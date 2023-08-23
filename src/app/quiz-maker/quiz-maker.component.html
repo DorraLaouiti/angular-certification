@@ -1,1 +1,14 @@
-<p>quiz-maker works!</p>
+<h1>Quiz Maker</h1>
+<div class="rowView">
+  <mat-form-field >
+<mat-select id="categorySelect" placeholder="Choose a category">
+  <mat-option  *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
+</mat-select>
+</mat-form-field>
+<mat-form-field >
+<mat-select  id="difficultySelect" placeholder="Select a difficulty">
+  <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty" >{{difficulty}}</mat-option>
+</mat-select>
+</mat-form-field>
+<button id="createBtn" (click)="createTrivia()">Create</button>
+</div>
