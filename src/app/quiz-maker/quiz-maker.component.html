@@ -1,14 +1,34 @@
 <h1>Quiz Maker</h1>
 <div class="rowView">
-  <mat-form-field >
-<mat-select id="categorySelect" placeholder="Choose a category">
-  <mat-option  *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
-</mat-select>
-</mat-form-field>
-<mat-form-field >
-<mat-select  id="difficultySelect" placeholder="Select a difficulty">
-  <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty" >{{difficulty}}</mat-option>
-</mat-select>
-</mat-form-field>
-<button id="createBtn" (click)="createTrivia()">Create</button>
+  <mat-form-field>
+    <mat-select id="categorySelect" placeholder="Choose a category" [(ngModel)]="selectedCategory">
+      <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select id="difficultySelect" placeholder="Select a difficulty" [(ngModel)]="selectedDifficulty">
+      <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">{{difficulty}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button id="createBtn" (click)="createTrivia()">Create</button>
+</div>
+
+<div>
+
+  <div class="rowView" *ngFor="let question of quiz; let questionIndex = index">
+    <div class="columnView">
+      {{ question.question }}
+      <div class="rowView">
+        <div *ngFor="let answer of question.shuffled_answers; let answerIndex = index">
+          <button (click)="selectAnswer(questionIndex, answerIndex)"
+            [class.selected]="selectedAnswers[questionIndex] === answerIndex">
+            {{ answer.shuffled }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <button *ngIf="allQuestionsAnswered()" (click)="submitAnswers()">Submit</button>
+
 </div>
