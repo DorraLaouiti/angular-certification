@@ -6,8 +6,11 @@ import { AppComponent } from './app.component';
 import { QuizMakerComponent } from './quiz-maker/quiz-maker.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +22,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MatSelectModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    MatInputModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
