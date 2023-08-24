@@ -11,10 +11,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { DisplayResultsComponent } from './display-results/display-results.component';
 @NgModule({
   declarations: [
     AppComponent,
-    QuizMakerComponent
+    QuizMakerComponent,
+    DisplayResultsComponent
   ],
   imports: [
     BrowserModule,
