@@ -14,10 +14,9 @@ export class DisplayResultsComponent implements OnInit {
   correctAnswers!: string[];
 
   redirectToQuizCreation() {
-    this.router.navigate(['/']); // Replace with the actual route
+    this.router.navigate(['/']);
   }
   ngOnInit() {
-    // const shuffledValues = this.test.questions;
     const questionsString = this.route.snapshot.queryParamMap.get('questions');
     const selectedAnswersString =
       this.route.snapshot.queryParamMap.get('selectedAnswers');
