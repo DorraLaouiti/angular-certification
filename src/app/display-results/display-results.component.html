@@ -1,1 +1,29 @@
-<p>display-results works!</p>
+<h1>Results</h1>
+<div>
+  <div class="columnView">
+    <div *ngFor="let question of questions; let questionIndex = index">
+      {{question}}
+      <div>
+        <div  class="rowView" *ngFor="let answers of shuffledAnswers![questionIndex] ; let answerIndex = index">
+          <div>
+            <button [ngClass]="{
+          'correct-answer': correctAnswers[questionIndex] === answers.shuffled,
+          'wrong-answer': selectedAnswers[questionIndex] === answers.shuffled && selectedAnswers[questionIndex] !==  correctAnswers[questionIndex]
+        }">
+              {{ answers.shuffled }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <h1>Results</h1>
+  <div class="rowView">
+
+    <div class="score" [style.color]="getScoreColor()">
+      Your Score: {{ getCorrectAnswersCount() }} / {{ selectedAnswers.length }}
+    </div>
+
+    <button (click)="redirectToQuizCreation()">Create a new quiz</button>
+

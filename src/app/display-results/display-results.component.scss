@@ -1,0 +1,39 @@
+.rowView {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  h1 {
+    text-align: center;
+  }
+
+  mat-form-field {
+    margin: 0;
+    flex: 1;
+  }
+
+  button {
+    margin-left: 10px;
+  }
+}
+.correct-answer {
+  background-color: green;
+  color: white;
+}
+
+.wrong-answer {
+  background-color: red;
+  color: white;
+}
+.red {
+  color: red;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.green {
+  color: green;
+}
+

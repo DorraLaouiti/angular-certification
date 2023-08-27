@@ -3,6 +3,7 @@ import { TriviaCategory } from '../models/triviaCategory';
 import { HttpService } from '../service/http.service';
 import { QuizQuestion } from '../models/quizQuestion';
 import { ResponseQuizQuestions } from '../models/responseQuizQuestions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-maker',
@@ -25,7 +26,7 @@ export class QuizMakerComponent implements OnInit {
   selectedAnswers!: number[];
   originalQuestionOrder: number[] = [];
   originalShownAnswersnOrder: string[] = [];
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService, private router: Router) {}
 
   ngOnInit() {
     this.getListCategories();
@@ -84,7 +85,9 @@ export class QuizMakerComponent implements OnInit {
     const submittedQuestions = this.originalQuestionOrder.map(
       (index) => this.quiz[index].question
     );
-
+    const submittedCorrectAnswers = this.originalQuestionOrder.map(
+      (index) => this.quiz[index].correct_answer
+    );
     const submittedAnswers = this.selectedAnswers.map(
       (answerIndex, questionIndex) => {
         if (answerIndex !== -1) {
@@ -95,14 +98,27 @@ export class QuizMakerComponent implements OnInit {
         }
       }
     );
-    const submittedListofAnswers = this.selectedAnswers.map((questionIndex) => {
-      this.quiz[questionIndex].shuffled_answers;
-      return this.quiz[questionIndex].shuffled_answers;
+    const submittedListofAnswers = this.selectedAnswers.map(
+      (answerIndex, questionIndex) => {
+        if (answerIndex !== -1) {
+          return this.quiz[questionIndex].shuffled_answers;
+        } else {
+          return 'Not answered';
+        }
+      }
+    );
+    this.router.navigate(['/results'], {
+      queryParams: {
+        questions: JSON.stringify(submittedQuestions),
+        selectedAnswers: JSON.stringify(submittedAnswers),
+        answersChoices: JSON.stringify(submittedListofAnswers),
+        correctAnswers: JSON.stringify(submittedCorrectAnswers),
+      },
     });
-
     console.log('Submitted Questions:', submittedQuestions);
     console.log('Submitted Answers:', submittedAnswers);
     console.log('Submitted shuffeled list of Answers:', submittedListofAnswers);
+    console.log('Submitted correct Answers:', submittedCorrectAnswers);
   }
 
   shuffle(array: string[]) {
