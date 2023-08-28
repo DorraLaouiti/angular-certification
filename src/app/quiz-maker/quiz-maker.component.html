@@ -17,12 +17,12 @@
 
   <div class="rowView" *ngFor="let question of quiz; let questionIndex = index">
     <div class="columnView">
-      {{ question.question }}
+      <div [innerHTML]="question.question"></div>
       <div class="rowView">
         <div *ngFor="let answer of question.shuffled_answers; let answerIndex = index">
           <button (click)="selectAnswer(questionIndex, answerIndex)"
             [class.selected]="selectedAnswers[questionIndex] === answerIndex">
-            {{ answer.shuffled }}
+            <div [innerHTML]="answer.shuffled"></div>
           </button>
         </div>
       </div>

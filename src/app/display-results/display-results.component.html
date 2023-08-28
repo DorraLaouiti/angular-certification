@@ -2,7 +2,7 @@
 <div>
   <div class="columnView">
     <div *ngFor="let question of questions; let questionIndex = index">
-      {{question}}
+      <div [innerHTML]="question"></div>
       <div>
         <div  class="rowView" *ngFor="let answers of shuffledAnswers![questionIndex] ; let answerIndex = index">
           <div>
@@ -10,7 +10,7 @@
           'correct-answer': correctAnswers[questionIndex] === answers.shuffled,
           'wrong-answer': selectedAnswers[questionIndex] === answers.shuffled && selectedAnswers[questionIndex] !==  correctAnswers[questionIndex]
         }">
-              {{ answers.shuffled }}
+        <div [innerHTML]="answers.shuffled"></div>
             </button>
           </div>
         </div>
