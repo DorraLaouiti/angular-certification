@@ -30,10 +30,6 @@ export class DisplayResultsComponent implements OnInit {
     this.shuffledAnswers = JSON.parse(shuffledAnswersString || '{}');
     this.correctAnswers = JSON.parse(correctAnswersString || '{}');
 
-    console.log('answers', this.shuffledAnswers);
-    console.log('correct answers', this.correctAnswers);
-    console.log('selected', this.selectedAnswers);
-    console.log('questions', this.questions);
   }
 
   getScoreColor(): string {
@@ -51,6 +47,7 @@ export class DisplayResultsComponent implements OnInit {
       return 'green';
     }
   }
+
   getCorrectAnswersCount(): number {
     return this.selectedAnswers.filter(
       (answer, index) => answer === this.correctAnswers[index]

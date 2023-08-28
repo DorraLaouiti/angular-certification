@@ -5,6 +5,8 @@ import { QuizQuestion } from '../models/quizQuestion';
 import { ResponseQuizQuestions } from '../models/responseQuizQuestions';
 import { Router } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-quiz-maker',
   templateUrl: './quiz-maker.component.html',
@@ -47,6 +49,7 @@ export class QuizMakerComponent implements OnInit {
       .subscribe((response) => {
         this.quizData = response;
         this.quiz = response.results.map((question) => {
+
           const shuffledAnswers = this.shuffle([
             question.correct_answer,
             ...question.incorrect_answers,
@@ -57,7 +60,7 @@ export class QuizMakerComponent implements OnInit {
                 question.incorrect_answers[index] === answer
                   ? question.correct_answer
                   : question.incorrect_answers[index],
-              shuffled: answer,
+              shuffled: answer ,
               index: index,
             };
           });
@@ -78,7 +81,7 @@ export class QuizMakerComponent implements OnInit {
     if (this.selectedAnswers) {
       return this.selectedAnswers.every((index) => index !== -1);
     }
-    return false; // Return false if selectedAnswers is undefined
+    return false;
   }
 
   submitAnswers() {
@@ -115,14 +118,10 @@ export class QuizMakerComponent implements OnInit {
         correctAnswers: JSON.stringify(submittedCorrectAnswers),
       },
     });
-    console.log('Submitted Questions:', submittedQuestions);
-    console.log('Submitted Answers:', submittedAnswers);
-    console.log('Submitted shuffeled list of Answers:', submittedListofAnswers);
-    console.log('Submitted correct Answers:', submittedCorrectAnswers);
   }
 
   shuffle(array: string[]) {
-    // Shuffle the array using Fisher-Yates algorithm
+    // Fisher-Yates algorithm
     let currentIndex = array.length,
       randomIndex: number,
       temporaryValue: string;
@@ -140,3 +139,4 @@ export class QuizMakerComponent implements OnInit {
     this.loadQuestions();
   }
 }
+
